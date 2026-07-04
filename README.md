@@ -37,7 +37,7 @@ LocalMask represents a paradigm shift in browser privacy tools. Traditional spoo
 
 - **Zero-Footprint Spoofing:** Absolute native emulation. No script tags are injected, making it invisible to standard anti-fingerprinting scripts.
 - **Dynamic IP Synchronization:** If enabled, the extension queries `ipwho.is` to automatically map your browser's internal GPS coordinates and Timezone strictly to your current VPN/Proxy node.
-- **Selective Domain Exclusion (Blacklist):** Need to join a Google Meet call without routing your WebRTC through the proxy? Add `meet.google.com` to the ignored list, and LocalMask will step aside entirely for that domain.
+- **Selective Domain Exclusion (Blacklist):** Need to join a Google Meet call without routing your WebRTC through the proxy? Add `meet.google.com` to the ignored list, and LocalMask will step aside entirely for that domain. You can also use wildcards like `*.axon.me` to ignore all subdomains, or even `*.ir` to exclude entire TLDs!
 - **WebRTC Shield:** Aggressively drops non-proxied UDP connections via the `chrome.privacy` API, neutralizing WebRTC IP leaks.
 - **Hotkeys:** Instantly toggle your privacy state globally by pressing `Alt+Shift+X` (or `Option+Shift+X`).
 
@@ -100,7 +100,7 @@ defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool tru
 
 - **تغییر بدون ردپا (Zero-Footprint):** هیچ کد جاوا اسکریپتی به صفحات وب تزریق نمی‌شود، بنابراین برای اسکریپت‌های ضد-انگشت‌نگاری کاملاً نامرئی است.
 - **همگام‌سازی داینامیک IP:** افزونه می‌تواند مختصات دقیق جغرافیایی و تایم‌زون VPN یا پراکسی فعلی شما را از `ipwho.is` دریافت کرده و روی مرورگر اعمال کند.
-- **استثنا کردن دامنه‌ها (لیست سیاه):** آیا نیاز دارید وارد جلسه Google Meet شوید اما نمی‌خواهید سرعتتان به خاطر پراکسی افت کند؟ کافیست `meet.google.com` را به لیست سیاه اضافه کنید تا افزونه روی آن سایت غیرفعال بماند.
+- **استثنا کردن دامنه‌ها (لیست سیاه):** آیا نیاز دارید وارد جلسه Google Meet شوید اما نمی‌خواهید سرعتتان به خاطر پراکسی افت کند؟ کافیست `meet.google.com` را به لیست سیاه اضافه کنید تا افزونه روی آن سایت غیرفعال بماند. همچنین می‌توانید از وایلدکارت (Wildcard) استفاده کنید؛ مثلاً با اضافه کردن `*.axon.me` تمامی ساب‌دامین‌های این سایت مستثنی می‌شوند، یا حتی با اضافه کردن `*.ir` می‌توانید کل دامنه‌های ایرانی را از پراکسی خارج کنید!
 - **سپر WebRTC:** با اعمال سیاست‌های سخت‌گیرانه روی `chrome.privacy`، از نشت آی‌پی واقعی شما جلوگیری می‌کند.
 - **کلیدهای میانبر (Hotkeys):** با فشردن `Alt+Shift+X` (یا `Option+Shift+X`) در هر کجای سیستم، افزونه را به سرعت خاموش یا روشن کنید.
 

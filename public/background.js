@@ -58,6 +58,12 @@ function isUrlBlacklisted(url, blacklist) {
     const urlObj = new URL(url);
     const hostname = urlObj.hostname;
     return blacklist.some(domain => {
+      // Support explicit wildcards (e.g. *.axon.me or *.ir)
+      if (domain.startsWith('*.')) {
+        const rootDomain = domain.slice(2);
+        // If it's *.ir, it should match test.ir, api.ir, but also just ir if navigated to directly
+        return hostname === rootDomain || hostname.endsWith('.' + rootDomain);
+      }
       return hostname === domain || hostname.endsWith('.' + domain);
     });
   } catch (e) {

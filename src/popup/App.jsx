@@ -88,7 +88,8 @@ export default function App() {
         cleanDomain = 'https://' + cleanDomain;
       }
       const urlObj = new URL(cleanDomain);
-      cleanDomain = urlObj.hostname;
+      // Decode to handle characters like '*' that get converted to '%2a'
+      cleanDomain = decodeURIComponent(urlObj.hostname);
       
       // Strip 'www.' if present
       if (cleanDomain.startsWith('www.')) {
