@@ -52,6 +52,23 @@ function disableWebRTCSpoofing() {
   }
 }
 
+function updateExtensionIcon(isActive) {
+  if (chrome.action && chrome.action.setIcon) {
+    const paths = isActive ? {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    } : {
+      "16": "icon16_off.png",
+      "48": "icon48_off.png",
+      "128": "icon128_off.png"
+    };
+    chrome.action.setIcon({ path: paths }, () => {
+      chrome.runtime.lastError;
+    });
+  }
+}
+
 function isUrlBlacklisted(url, blacklist) {
   if (!url || !blacklist || blacklist.length === 0) return false;
   try {
@@ -152,6 +169,7 @@ chrome.webNavigation.onCommitted.addListener((details) => {
 // 2. LISTEN FOR POPUP UI COMMANDS
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "update_profile") {
+    updateExtensionIcon(true);
     if (message.webrtc) {
       enableWebRTCSpoofing();
     } else {
@@ -177,6 +195,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     sendResponse({ success: true });
   } 
   else if (message.action === "disable_profile") {
+    updateExtensionIcon(false);
     disableWebRTCSpoofing();
     // Find ALL tabs that have the debugger attached and detach them cleanly
     chrome.debugger.getTargets((targets) => {
@@ -211,6 +230,7 @@ chrome.commands.onCommand.addListener((command) => {
     chrome.storage.local.get(['isActive', 'targetProfile', 'targetTimezone', 'isWebRTCProtected', 'blacklist'], (data) => {
       const newState = !data.isActive;
       chrome.storage.local.set({ isActive: newState });
+      updateExtensionIcon(newState);
       
       if (newState) {
         if (data.isWebRTCProtected !== false) enableWebRTCSpoofing();
@@ -247,4 +267,9 @@ chrome.commands.onCommand.addListener((command) => {
 // Clean up links when tabs are manually closed
 chrome.tabs.onRemoved.addListener((tabId) => {
   chrome.debugger.detach({ tabId: tabId }, () => { chrome.runtime.lastError; });
+});
+
+// Initialize icon state on load
+chrome.storage.local.get(['isActive'], (data) => {
+  updateExtensionIcon(data.isActive === true);
 });
