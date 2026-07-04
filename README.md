@@ -41,6 +41,17 @@ LocalMask represents a paradigm shift in browser privacy tools. Traditional spoo
 - **WebRTC Shield:** Aggressively drops non-proxied UDP connections via the `chrome.privacy` API, neutralizing WebRTC IP leaks.
 - **Hotkeys:** Instantly toggle your privacy state globally by pressing `Alt+Shift+X` (or `Option+Shift+X`).
 
+### 🧪 Testing & Verification
+
+To understand the power of LocalMask, we highly recommend testing your browser's fingerprint before and after turning on the extension. By default, standard VPNs change your IP, but they leave your browser's internal Timezone, Geolocation, and WebRTC exposed. LocalMask patches these leaks natively.
+
+**Recommended Test Sites:**
+- [WebBrowserTools Timezone](https://webbrowsertools.com/timezone/) - Check if your JavaScript `Intl` and `Date` objects match your VPN's Timezone.
+- [BrowserLeaks WebRTC](https://browserleaks.com/webrtc) - Verify that your real local/public IP is not leaking through WebRTC UDP channels.
+- [DNSLeakTest](https://dnsleaktest.com/) - Ensure your DNS requests are routed properly.
+- [Whoer.net](https://whoer.net) / [Pixelscan](https://pixelscan.net) - General anonymity and bot-detection scanners.
+- [CreepJS](https://abrahamjuliot.github.io/creepjs/) - The ultimate fingerprinting test. Notice how LocalMask avoids the "lies" and "tampering" flags that other spoofers trigger because it operates on the CDP level rather than JS injection.
+
 ### 📦 Setup Guide
 
 1. Clone the repository:
@@ -73,6 +84,18 @@ LocalMask represents a paradigm shift in browser privacy tools. Traditional spoo
 - **استثنا کردن دامنه‌ها (لیست سیاه):** آیا نیاز دارید وارد جلسه Google Meet شوید اما نمی‌خواهید سرعتتان به خاطر پراکسی افت کند؟ کافیست `meet.google.com` را به لیست سیاه اضافه کنید تا افزونه روی آن سایت غیرفعال بماند.
 - **سپر WebRTC:** با اعمال سیاست‌های سخت‌گیرانه روی `chrome.privacy`، از نشت آی‌پی واقعی شما جلوگیری می‌کند.
 - **کلیدهای میانبر (Hotkeys):** با فشردن `Alt+Shift+X` (یا `Option+Shift+X`) در هر کجای سیستم، افزونه را به سرعت خاموش یا روشن کنید.
+
+### 🧪 تست و اعتبارسنجی
+
+برای درک بهتر قدرت LocalMask، پیشنهاد می‌کنیم قبل و بعد از روشن کردن افزونه، وضعیت مرورگر خود را تست کنید. 
+وی‌پی‌ان‌های (VPN) معمولی فقط آی‌پی شما را تغییر می‌دهند، اما ساعت سیستم (Timezone)، لوکیشن GPS و WebRTC شما دست‌نخورده باقی می‌ماند و سایت‌ها به راحتی متوجه هویت واقعی شما می‌شوند. LocalMask تمام این حفره‌ها را به صورت ریشه‌ای می‌پوشاند.
+
+**سایت‌های پیشنهادی برای تست:**
+- [تست Timezone](https://webbrowsertools.com/timezone/) - بررسی کنید که آیا ساعت مرورگر شما دقیقاً با ساعت سرور VPN یکی شده است یا خیر.
+- [تست نشت WebRTC](https://browserleaks.com/webrtc) - مطمئن شوید که آی‌پی واقعی یا لوکال شما از طریق کانال‌های WebRTC لو نمی‌رود.
+- [DNSLeakTest](https://dnsleaktest.com/) - برای اطمینان از عدم نشت درخواست‌های DNS.
+- [Whoer.net](https://whoer.net) / [Pixelscan](https://pixelscan.net) - سایت‌های جامع برای تست میزان ناشناس بودن و تشخیص ربات.
+- [CreepJS](https://abrahamjuliot.github.io/creepjs/) - یکی از سخت‌گیرانه‌ترین سایت‌های انگشت‌نگاری. تست کنید و ببینید که به خاطر استفاده از پروتکل CDP، این افزونه برخلاف سایر ابزارها هیچ خطای "دستکاری کد (Tampering)" یا "دروغ (Lies)" ایجاد نمی‌کند!
 
 ### 📦 راهنمای نصب و راه‌اندازی
 
