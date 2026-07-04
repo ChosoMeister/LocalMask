@@ -41,6 +41,14 @@ LocalMask represents a paradigm shift in browser privacy tools. Traditional spoo
 - **WebRTC Shield:** Aggressively drops non-proxied UDP connections via the `chrome.privacy` API, neutralizing WebRTC IP leaks.
 - **Hotkeys:** Instantly toggle your privacy state globally by pressing `Alt+Shift+X` (or `Option+Shift+X`).
 
+### 📸 Interface
+
+<p align="center">
+  <img src="public/screenshot-masked.png" alt="Masked State" width="300" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="public/screenshot-unmasked.png" alt="Unmasked State" width="300" />
+</p>
+
 ### 🧪 Testing & Verification
 
 To understand the power of LocalMask, we highly recommend testing your browser's fingerprint before and after turning on the extension. By default, standard VPNs change your IP, but they leave your browser's internal Timezone, Geolocation, and WebRTC exposed. LocalMask patches these leaks natively.
@@ -122,6 +130,14 @@ defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool tru
 - **استثنا کردن دامنه‌ها (لیست سیاه):** آیا نیاز دارید وارد جلسه Google Meet شوید اما نمی‌خواهید سرعتتان به خاطر پراکسی افت کند؟ کافیست `meet.google.com` را به لیست سیاه اضافه کنید تا افزونه روی آن سایت غیرفعال بماند. همچنین می‌توانید از وایلدکارت (Wildcard) استفاده کنید؛ مثلاً با اضافه کردن `*.axon.me` تمامی ساب‌دامین‌های این سایت مستثنی می‌شوند، یا حتی با اضافه کردن `*.ir` می‌توانید کل دامنه‌های ایرانی را از پراکسی خارج کنید!
 - **سپر WebRTC:** با اعمال سیاست‌های سخت‌گیرانه روی `chrome.privacy`، از نشت آی‌پی واقعی شما جلوگیری می‌کند.
 - **کلیدهای میانبر (Hotkeys):** با فشردن `Alt+Shift+X` (یا `Option+Shift+X`) در هر کجای سیستم، افزونه را به سرعت خاموش یا روشن کنید.
+
+### 📸 رابط کاربری (UI)
+
+<p align="center">
+  <img src="public/screenshot-masked.png" alt="وضعیت روشن" width="300" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="public/screenshot-unmasked.png" alt="وضعیت خاموش" width="300" />
+</p>
 
 ### 🧪 تست و اعتبارسنجی
 
