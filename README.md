@@ -52,17 +52,35 @@ To understand the power of LocalMask, we highly recommend testing your browser's
 - [Whoer.net](https://whoer.net) / [Pixelscan](https://pixelscan.net) - General anonymity and bot-detection scanners.
 - [CreepJS](https://abrahamjuliot.github.io/creepjs/) - The ultimate fingerprinting test. Notice how LocalMask avoids the "lies" and "tampering" flags that other spoofers trigger because it operates on the CDP level rather than JS injection.
 
-### 🙈 Hide "Started Debugging" Infobar
+### 🙈 Suppressing the "Started Debugging" Infobar
 
-Chrome displays a security infobar when the debugger API is active. To hide it permanently on your local machine:
+LocalMask's privacy engine uses the Chrome DevTools Protocol (`chrome.debugger` API) to inspect and modify browser traffic natively. Whenever *any* extension uses this API, Chromium-based browsers (Chrome, Edge, Brave, etc.) display a persistent infobar:
 
-**Windows:**
-1. Right-click your Chrome/Edge shortcut and select **Properties**.
-2. Add `--silent-debugger-extension-api` to the end of the **Target** field (with a space before it).
-3. Restart the browser using this shortcut.
+> *"LocalMask - CDP Privacy Engine" started debugging this browser*
 
-**macOS:**
-Run this command in Terminal to set the enterprise policy, then completely Quit (Cmd+Q) and reopen the browser:
+This is an intentional, hardcoded security UX feature in Chromium—there is no in-app setting to turn it off. It does not affect functionality, and you can safely ignore or cancel it without interrupting LocalMask. However, if you want to hide it entirely during local development, follow the guides below.
+
+#### 🪟 Windows (Recommended)
+1. Right-click your Chrome or Edge shortcut and select **Properties**.
+2. Add `--silent-debugger-extension-api` to the end of the **Target** field (make sure there is a space before it).
+3. Restart the browser using this newly modified shortcut.
+
+#### 🍏 macOS (Option 1: Automator App - Recommended)
+Since double-clicking a macOS Dock icon doesn't allow passing command-line flags, you can wrap the launch command in a simple Automator app:
+
+1. Open **Automator** → **New Document** → **Application**.
+2. Add a **Run Shell Script** action with the following code (adjust for Chrome if needed):
+   ```bash
+   open -a "Microsoft Edge" --args --silent-debugger-extension-api
+   ```
+3. Save it as `Edge (Debug-Silent).app` in your Applications folder.
+4. *(Optional)* Give it the real browser icon: `Right Click` -> `Get Info` on the real browser app → click its icon in the top left → `Cmd+C` → `Get Info` on your new Automator app → click its icon → `Cmd+V`.
+5. Pin this new app to your Dock and use it to launch the browser.
+
+#### 🍏 macOS (Option 2: Enterprise Policy)
+Alternatively, Chromium exposes a managed policy `SilentDebuggerExtensionAPIEnabled`. 
+You can try applying this via terminal, though modern macOS often requires a `.mobileconfig` profile and a full system restart for it to be fully recognized by `chrome://policy`.
+
 ```bash
 # For Google Chrome
 defaults write com.google.Chrome SilentDebuggerExtensionAPIEnabled -bool true
@@ -70,6 +88,7 @@ defaults write com.google.Chrome SilentDebuggerExtensionAPIEnabled -bool true
 # For Microsoft Edge
 defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool true
 ```
+*Note: If `defaults write` does not work, stick to Option 1.*
 
 ### 📦 Setup Guide
 
@@ -118,15 +137,32 @@ defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool tru
 
 ### 🙈 مخفی کردن نوار هشدار دیباگر
 
-مرورگر کروم به دلیل استفاده افزونه از API دیباگر، یک نوار هشدار امنیتی نمایش می‌دهد. برای مخفی کردن دائمی آن در سیستم خود:
+موتور حریم خصوصی LocalMask برای دستکاری امن ترافیک مرورگر، از پروتکل DevTools کروم (`chrome.debugger` API) استفاده می‌کند. هر زمان که *هر افزونه‌ای* از این قابلیت استفاده کند، مرورگرهای بر پایه کرومیوم (مثل کروم، اج، بریو و غیره) یک نوار هشدار دائمی نمایش می‌دهند:
 
-**در ویندوز (Windows):**
-۱. روی شورت‌کات کروم یا اج کلیک راست کرده و **Properties** را بزنید.
+> *"LocalMask - CDP Privacy Engine" started debugging this browser*
+
+این یک ویژگی امنیتی از پیش‌تعریف‌شده در هسته کرومیوم است و هیچ تنظیماتی در خود مرورگر برای خاموش کردن آن وجود ندارد. این نوار هیچ تاثیری در عملکرد افزونه ندارد و می‌توانید با خیال راحت آن را نادیده بگیرید یا ضربدر آن را بزنید. اما اگر می‌خواهید برای همیشه از شر آن خلاص شوید، از روش‌های زیر استفاده کنید:
+
+#### 🪟 در ویندوز (Windows)
+۱. روی شورت‌کات کروم یا اج در دسکتاپ کلیک راست کرده و **Properties** را بزنید.
 ۲. در انتهای کادر **Target** یک فاصله (Space) بدهید و عبارت `--silent-debugger-extension-api` را اضافه کنید.
-۳. مرورگر را ببندید و از طریق همین شورت‌کات باز کنید.
+۳. مرورگر را کاملاً ببندید و از طریق همین شورت‌کات باز کنید.
 
-**در مک (macOS):**
-برنامه Terminal را باز کرده و دستور مربوطه را اجرا کنید. سپس مرورگر را کاملاً ببندید (Cmd+Q) و مجدداً باز کنید:
+#### 🍏 در مک (macOS - روش پیشنهادی با Automator)
+از آنجا که در مک نمی‌توان روی آیکون‌های پین‌شده در Dock آرگومان ست کرد، بهترین راه ساخت یک برنامه راه‌انداز است:
+
+۱. برنامه **Automator** را باز کنید → **New Document** → سپس **Application** را انتخاب کنید.
+۲. اکشن **Run Shell Script** را به صفحه اضافه کرده و کد زیر را در آن قرار دهید (در صورت نیاز نام مرورگر را تغییر دهید):
+   ```bash
+   open -a "Microsoft Edge" --args --silent-debugger-extension-api
+   ```
+۳. آن را با نامی مثل `Edge Secure.app` در پوشه Applications ذخیره کنید.
+۴. *(اختیاری)* برای تغییر آیکون: روی برنامه اصلی اج Get Info بگیرید → روی عکس آیکون بالا سمت چپ کلیک کنید → `Cmd+C` → حالا روی برنامه جدید Automator همینطور Get Info بگیرید → روی عکس کلیک کنید و `Cmd+V` را بزنید.
+۵. این برنامه جدید را در داک پین کنید و همیشه از طریق آن وارد مرورگر شوید.
+
+#### 🍏 در مک (macOS - روش جایگزین با Policy)
+یک راه دیگر استفاده از پالیسی‌های سازمانی کروم است. می‌توانید دستور زیر را در ترمینال وارد کنید، اگرچه در نسخه‌های جدید macOS این روش گاهی به پروفایل نصب `.mobileconfig` و ری‌استارت کامل سیستم نیاز دارد تا توسط `chrome://policy` شناسایی شود.
+
 ```bash
 # برای گوگل کروم (Google Chrome)
 defaults write com.google.Chrome SilentDebuggerExtensionAPIEnabled -bool true
@@ -134,6 +170,7 @@ defaults write com.google.Chrome SilentDebuggerExtensionAPIEnabled -bool true
 # برای مایکروسافت اج (Microsoft Edge)
 defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool true
 ```
+*نکته: اگر روش ترمینال جواب نداد، از همان روش پیشنهادی اول (Automator) استفاده کنید.*
 
 ### 📦 راهنمای نصب و راه‌اندازی
 
