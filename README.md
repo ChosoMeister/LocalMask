@@ -52,6 +52,25 @@ To understand the power of LocalMask, we highly recommend testing your browser's
 - [Whoer.net](https://whoer.net) / [Pixelscan](https://pixelscan.net) - General anonymity and bot-detection scanners.
 - [CreepJS](https://abrahamjuliot.github.io/creepjs/) - The ultimate fingerprinting test. Notice how LocalMask avoids the "lies" and "tampering" flags that other spoofers trigger because it operates on the CDP level rather than JS injection.
 
+### 🙈 Hide "Started Debugging" Infobar
+
+Chrome displays a security infobar when the debugger API is active. To hide it permanently on your local machine:
+
+**Windows:**
+1. Right-click your Chrome/Edge shortcut and select **Properties**.
+2. Add `--silent-debugger-extension-api` to the end of the **Target** field (with a space before it).
+3. Restart the browser using this shortcut.
+
+**macOS:**
+Run this command in Terminal to set the enterprise policy, then completely Quit (Cmd+Q) and reopen the browser:
+```bash
+# For Google Chrome
+defaults write com.google.Chrome SilentDebuggerExtensionAPIEnabled -bool true
+
+# For Microsoft Edge
+defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool true
+```
+
 ### 📦 Setup Guide
 
 1. Clone the repository:
@@ -96,6 +115,25 @@ To understand the power of LocalMask, we highly recommend testing your browser's
 - [DNSLeakTest](https://dnsleaktest.com/) - برای اطمینان از عدم نشت درخواست‌های DNS.
 - [Whoer.net](https://whoer.net) / [Pixelscan](https://pixelscan.net) - سایت‌های جامع برای تست میزان ناشناس بودن و تشخیص ربات.
 - [CreepJS](https://abrahamjuliot.github.io/creepjs/) - یکی از سخت‌گیرانه‌ترین سایت‌های انگشت‌نگاری. تست کنید و ببینید که به خاطر استفاده از پروتکل CDP، این افزونه برخلاف سایر ابزارها هیچ خطای "دستکاری کد (Tampering)" یا "دروغ (Lies)" ایجاد نمی‌کند!
+
+### 🙈 مخفی کردن نوار هشدار دیباگر
+
+مرورگر کروم به دلیل استفاده افزونه از API دیباگر، یک نوار هشدار امنیتی نمایش می‌دهد. برای مخفی کردن دائمی آن در سیستم خود:
+
+**در ویندوز (Windows):**
+۱. روی شورت‌کات کروم یا اج کلیک راست کرده و **Properties** را بزنید.
+۲. در انتهای کادر **Target** یک فاصله (Space) بدهید و عبارت `--silent-debugger-extension-api` را اضافه کنید.
+۳. مرورگر را ببندید و از طریق همین شورت‌کات باز کنید.
+
+**در مک (macOS):**
+برنامه Terminal را باز کرده و دستور مربوطه را اجرا کنید. سپس مرورگر را کاملاً ببندید (Cmd+Q) و مجدداً باز کنید:
+```bash
+# برای گوگل کروم (Google Chrome)
+defaults write com.google.Chrome SilentDebuggerExtensionAPIEnabled -bool true
+
+# برای مایکروسافت اج (Microsoft Edge)
+defaults write com.microsoft.edgemac SilentDebuggerExtensionAPIEnabled -bool true
+```
 
 ### 📦 راهنمای نصب و راه‌اندازی
 
