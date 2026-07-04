@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  
+  --color-primary: #E11D48; /* Vibrant Rose */
+  --color-primary-foreground: #FFFFFF;
+  
+  --color-secondary: #FB7185;
+  --color-secondary-foreground: #FFFFFF;
+  
+  --color-accent: #2563EB; /* Engagement Blue */
+  --color-accent-foreground: #FFFFFF;
+  
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  
+  --color-muted: #F1F5F9;
+  --color-muted-foreground: #64748B;
+  
+  --color-card: rgba(255, 255, 255, 0.6);
+  --color-card-foreground: #0F172A;
+  
+  --color-popover: rgba(255, 255, 255, 0.8);
+  --color-popover-foreground: #0F172A;
+  
+  --color-border: rgba(255, 255, 255, 0.5);
+  --color-input: rgba(255, 255, 255, 0.4);
+  
+  --color-ring: #E11D48;
+
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+}
+
+@layer base {
+  body {
+    @apply text-foreground font-sans;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #F8FAFC;
+    /* Mesh gradient for vibrant glassmorphism look */
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(221, 100%, 73%, 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(343, 100%, 76%, 0.3) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(221, 100%, 73%, 0.3) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  
+  * {
+    @apply border-border;
+  }
+}
+
+/* Custom scrollbar for glass UI */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.2);
+}
