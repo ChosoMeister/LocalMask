@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "LocalMask - CDP Privacy Engine",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Natively spoofs Timezone, Language, and Geolocation via CDP.",
   "permissions": [
     "debugger",

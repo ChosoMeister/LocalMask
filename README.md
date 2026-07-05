@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ChosoMeister/LocalMask/main/public/icon128.png?v=2" alt="LocalMask Logo" width="128" />
+  <img src="https://raw.githubusercontent.com/ChosoMeister/LocalMask/main/public/icon128_v2.png" alt="LocalMask Logo" width="128" />
 </p>
 
 <h1 align="center">LocalMask</h1>
