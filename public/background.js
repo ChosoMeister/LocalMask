@@ -55,13 +55,13 @@ function disableWebRTCSpoofing() {
 function updateExtensionIcon(isActive) {
   if (chrome.action && chrome.action.setIcon) {
     const paths = isActive ? {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "icon16_v2.png",
+      "48": "icon48_v2.png",
+      "128": "icon128_v2.png"
     } : {
-      "16": "icon16_off.png",
-      "48": "icon48_off.png",
-      "128": "icon128_off.png"
+      "16": "icon16_off_v2.png",
+      "48": "icon48_off_v2.png",
+      "128": "icon128_off_v2.png"
     };
     chrome.action.setIcon({ path: paths }, () => {
       chrome.runtime.lastError;
